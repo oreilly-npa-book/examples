@@ -8,6 +8,8 @@ import (
 func main() {
 	// We can create an in-line template using the Parse() method of the
 	// template.Template type
+	//
+	// Note that "simpleTemplate" is just an arbitrary name chosen for this example.
 	tmpl, err := template.New("simpleTemplate").Parse(`{{ "foobar" | print }}`)
 	if err != nil {
 		panic(err)
