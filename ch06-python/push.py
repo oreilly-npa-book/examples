@@ -27,7 +27,7 @@ if __name__ == "__main__":
     for vlan in vlans:
         vid = vlan.get("id")
         name = vlan.get("name")
-        print("\n")
+        print()
         print(f"CONFIGURING VLAN: {vid}")
         commands = get_commands(vid, name)
         for device in devices:
