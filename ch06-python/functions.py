@@ -23,10 +23,10 @@ vlans = [
 ]
 
 for vlan in vlans:
-    id = vlan.get("id")
+    vid = vlan.get("id")
     name = vlan.get("name")
-    print(f"CONFIGURING VLAN: {id}")
-    commands = get_commands(id, name)
+    print(f"CONFIGURING VLAN: {vid}")
+    commands = get_commands(vid, name)
     for device in devices:
         push_commands(device, commands)
         print()
