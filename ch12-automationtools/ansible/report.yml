@@ -1,0 +1,22 @@
+---
+- name: "PLAY 4 - CREATE REPORTS"
+  hosts: "eos,junos"
+  connection: "ansible.netcommon.network_cli"
+  become: true
+  gather_facts: no
+
+  tasks:
+    - name: "COLLECT FACTS FOR IOS"
+      arista.eos.eos_facts:
+
+    - name: "GENERATE DEVICE SPECIFIC REPORTS"
+      template:
+        src: "./reports/facts.j2"
+        dest: "./reports/facts/{{ inventory_hostname }}.md"
+
+    - name: "CREATE MASTER REPORT"
+      assemble:
+        src: "./reports/facts/"
+        dest: "./reports/master-report.md"
+        delimiter: "---"
+      run_once: true

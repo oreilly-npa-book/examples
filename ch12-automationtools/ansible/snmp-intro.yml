@@ -1,0 +1,17 @@
+---
+- name: "PLAY 1 - ISSUE SNMP COMMANDS"
+  hosts: eos
+  gather_facts: no
+  connection: "ansible.netcommon.network_cli"
+  become: true
+
+  tasks:
+    - name: "TASK1 - SHOW SNMP CONFIG"
+      arista.eos.eos_command:
+        commands:
+          - "show run | inc snmp"
+
+    - name: "TASK 2 - DEPLOY SNMP COMMANDS"
+      arista.eos.eos_config:
+        commands:
+          - "snmp-server chassis-id {{ inventory_hostname }}"

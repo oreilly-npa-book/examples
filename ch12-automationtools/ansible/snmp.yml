@@ -1,0 +1,33 @@
+---
+- name: "PLAY 1 - GENERATE SNMP CONFIGURATIONS"
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: "GENERATE CONFIGS FOR EACH OS"
+      template:
+        src: "./templates/snmp/{{ ansible_network_os }}.j2"
+        dest: "./configs/snmp/{{ inventory_hostname }}.cfg"
+
+- name: "PLAY 2 - ENSURE EOS SNMP CONFIGS ARE DEPLOYED"
+  hosts: "eos"
+  connection: "ansible.netcommon.network_cli"
+  become: true
+  gather_facts: no
+
+  tasks:
+    - name: "DEPLOY CONFIGS FOR EOS"
+      arista.eos.eos_config:
+        src: "./configs/snmp/{{ inventory_hostname }}.cfg"
+
+- name: "PLAY 3 - ENSURE JUNOS SNMP CONFIGS ARE DEPLOYED USING SET COMMANDS"
+  hosts: "junos"
+  connection: "ansible.netcommon.network_cli"
+  become: true
+  gather_facts: no
+
+  tasks:
+    - name: "DEPLOY CONFIGS FOR JUNOS"
+      junipernetwork.junos.junos_config:
+        src: "./configs/snmp/{{ inventory_hostname }}.cfg"

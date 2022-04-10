@@ -1,0 +1,13 @@
+---
+snmp:
+  contact: Joe Smith
+  location: AMERICAS-NJ
+  communities:
+    - community: public
+      type: ro
+    - community: public123
+      type: ro
+    - community: private
+      type: rw
+    - community: secure
+      type: rw

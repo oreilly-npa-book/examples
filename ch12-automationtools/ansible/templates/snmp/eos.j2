@@ -1,0 +1,5 @@
+snmp-server location {{ snmp.location }}
+snmp-server contact {{ snmp.contact }}
+{% for community in snmp.communities %}
+snmp-server community {{ community.community }} {{ community.type }}
+{% endfor %}

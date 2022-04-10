@@ -1,0 +1,18 @@
+---
+- name: "PLAY 1 - COLLECT FACTS FOR EOS"
+  hosts: eos
+  connection: "ansible.netcommon.network_cli"
+  become: true
+  gather_facts: no
+
+  tasks:
+    - name: "COLLECT FACTS FOR EOS"
+      arista.eos.eos_facts:
+
+    - name: "DEBUG OS VERSION"
+      debug:
+        var: ansible_net_version
+
+    - name: "DEBUG HOSTNAME"
+      debug:
+        var: ansible_net_hostname
