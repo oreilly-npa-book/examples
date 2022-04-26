@@ -1,0 +1,17 @@
+---
+- name: "PLAY 1 - COLLECT FACTS FOR IOS"
+  hosts: iosxe
+  connection: "ansible.netcommon.network_cli"
+  gather_facts: no
+
+  tasks:
+    - name: "COLLECT FACTS FOR IOS"
+      cisco.ios.ios_facts:
+
+    - name: "DEBUG OS VERSION"
+      debug:
+        var: ansible_net_version
+
+    - name: "DEBUG HOSTNAME"
+      debug:
+        var: ansible_net_hostname

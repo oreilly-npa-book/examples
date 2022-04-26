@@ -1,0 +1,9 @@
+set snmp location {{ snmp.location }}
+set snmp contact {{ snmp.contact | replace(' ', '_') }}
+{% for community in snmp.communities %}
+{%   if community.type | lower == "rw" %}
+set snmp community {{ community.community }} authorization read-write
+{%   elif community.type | lower == "ro" %}
+set snmp community {{ community.community }} authorization read-only
+{%   endif %}
+{% endfor %}

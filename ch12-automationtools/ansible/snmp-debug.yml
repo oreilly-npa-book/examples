@@ -1,0 +1,25 @@
+---
+- name: "PLAY 1 - ISSUE SNMP COMMANDS"
+  hosts: iosxe
+  gather_facts: no
+  connection: "ansible.netcommon.network_cli"
+
+  tasks:
+    - name: "TASK1 - SHOW SNMP CONFIG"
+      cisco.ios.ios_command:
+        commands:
+          - "show run | inc snmp-server community"
+      register: snmp_data
+
+    - name: "DEBUG COMMAND STRING RESPONSE WITH JINJA SHORTHAND SYNTAX"
+      debug:
+        var: snmp_data.stdout.0
+
+    - name: "DEBUG COMMAND STRING RESPONSE WITH STANDARD PYTHON SYNTAX"
+      debug:
+        var: snmp_data['stdout'][0]
+
+    - name: "WRITE DATA TO FILE"
+      template:
+        src: "basic.j2"
+        dest: "./commands/snmp/{{ inventory_hostname }}.txt"

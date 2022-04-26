@@ -1,0 +1,30 @@
+---
+- name: "PLAY 1 - CREATE REPORTS"
+  hosts: "iosxe,eos,nxos"
+  connection: "ansible.netcommon.network_cli"
+  gather_facts: no
+
+  tasks:
+    - name: "COLLECT FACTS FOR EOS"
+      arista.eos.eos_facts:
+      when: ansible_network_os == "eos"
+
+    - name: "COLLECT FACTS FOR IOS"
+      cisco.ios.ios_facts:
+      when: ansible_network_os == "ios"
+
+    - name: "COLLECT FACTS FOR NXOS"
+      cisco.nxos.nxos_facts:
+      when: ansible_network_os == "nxos"
+
+    - name: "GENERATE DEVICE SPECIFIC REPORTS"
+      template:
+        src: "./reports/facts.j2"
+        dest: "./reports/facts/{{ inventory_hostname }}.md"
+
+    - name: "CREATE MASTER REPORT"
+      assemble:
+        src: "./reports/facts/"
+        dest: "./reports/master-report.md"
+        delimiter: "---"
+      run_once: true
