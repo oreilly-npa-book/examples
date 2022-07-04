@@ -9,7 +9,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "eu-west-3"
+  provider = terraform.workspace
 }
 
 variable "cidr" {
