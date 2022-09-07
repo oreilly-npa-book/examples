@@ -1,0 +1,16 @@
+---
+- name: "PLAY 1 - ISSUE SNMP COMMANDS"
+  hosts: iosxe
+  gather_facts: no
+  connection: "ansible.netcommon.network_cli"
+
+  tasks:
+    - name: "TASK1 - SHOW SNMP CONFIG"
+      ios_command:
+        commands:
+          - "show run | inc snmp"
+
+    - name: "TASK 2 - DEPLOY SNMP COMMANDS"
+      cisco.ios.ios_config:
+        commands:
+          - "snmp-server chassis-id {{ inventory_hostname }}"

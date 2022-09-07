@@ -1,0 +1,18 @@
+{%- set configured_peers = salt.ntp.peers()['out'] -%}
+{%- set add_peers = pillar.ntp_peers | difference(configured_peers) -%}
+{%- set rem_peers = configured_peers | difference(pillar.ntp_peers) -%}
+{%- if grains.os == 'junos' -%}
+ {%- for peer in rem_peers -%}
+delete system ntp peer {{ peer }}
+ {% endfor -%}
+ {%- for peer in add_peers -%}
+set system ntp peer {{ peer }}
+ {% endfor -%}
+{%- elif grains.vendor | lower == 'cisco' %}
+ {%- for peer in rem_peers -%}
+no ntp peer {{ peer }}
+ {% endfor -%}
+ {%- for peer in add_peers -%}
+ntp peer {{ peer }}
+ {% endfor -%}
+{%- endif -%}

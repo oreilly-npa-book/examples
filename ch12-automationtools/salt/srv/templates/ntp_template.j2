@@ -1,0 +1,15 @@
+{%- if grains.os == 'junos' %}
+system {
+ replace:
+ ntp {
+   {%- for peer in pillar.ntp_peers %}
+   peer {{ peer }};
+   {%- endfor %}
+ }
+}
+{%- elif grains.vendor | lower == 'cisco' %}
+no ntp
+  {%- for peer in pillar.ntp_peers %}
+ntp peer {{ peer }}
+  {%- endfor %}
+{%- endif %}

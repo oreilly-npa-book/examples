@@ -1,0 +1,9 @@
+snmp-server location {{ snmp.location }}
+snmp-server contact {{ snmp.contact }}
+{% for community in snmp.communities %}
+{%   if community.type | lower == "rw" %}
+snmp-server community {{ community.community }} group network-admin
+{%   elif community.type | lower == "ro" %}
+snmp-server community {{ community.community }} group network-operator
+{%   endif %}
+{% endfor %}
