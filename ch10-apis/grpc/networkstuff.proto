@@ -1,0 +1,23 @@
+syntax = "proto3";
+package networkstuff;
+
+option go_package = "./networkstuff";
+
+service RouterService {
+    rpc GetRouter(RouterRequest) returns (Router);
+}
+
+message RouterRequest {
+    int32 id = 1;
+}
+
+message Router {
+    int32 id = 1;
+    string hostname = 2;
+    repeated Interface interfaces = 3;
+}
+
+message Interface {
+    int32 id = 1;
+    string description = 2;
+}
