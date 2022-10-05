@@ -6,6 +6,7 @@ import (
   "log"
 
   "github.com/karimra/gnmic/api"
+  "github.com/openconfig/gnmi/value"
   "google.golang.org/protobuf/encoding/prototext"
 )
 
@@ -36,7 +37,7 @@ func main() {
 
   // create a GetRequest
   getReq, err := api.NewGetRequest(
-      api.Path("/"),
+      api.Path("/interfaces/interface/config/description"),
       api.Encoding("json_ietf"))
   check_error(err)
   fmt.Println(prototext.Format(getReq))
@@ -45,4 +46,12 @@ func main() {
   getResp, err := tg.Get(ctx, getReq)
   check_error(err)
   fmt.Println(prototext.Format(getResp))
+  descriptionGnmiValue := getResp.GetNotification()[0].GetUpdate()[0].GetVal()
+  //fmt.Printf("%`v", descriptionGnmiValue)
+  myCurrentDescriptionValue, err := value.ToScalar(descriptionGnmiValue)
+  check_error(err)
+  myCurrentDescriptionStr := myCurrentDescriptionValue.(string)
+  fmt.Println("This is my current description: " + myCurrentDescriptionStr)
+  myNewDescription := myCurrentDescriptionStr + "something_else"
+  fmt.Println("This is going to be the new one: " + myNewDescription)
 }

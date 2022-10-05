@@ -36,7 +36,7 @@ func main() {
 
   // create a GetRequest
   getReq, err := api.NewGetRequest(
-      api.Path("/"),
+      api.Path("/interfaces/interface/config"),
       api.Encoding("json_ietf"))
   check_error(err)
   fmt.Println(prototext.Format(getReq))
