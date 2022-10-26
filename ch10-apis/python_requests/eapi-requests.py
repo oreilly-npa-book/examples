@@ -24,9 +24,6 @@ if __name__ == "__main__":
         "id": "EapiExplorer-1"
     }
 
-    response = requests.post(url, data=json.dumps(payload),  auth=auth)
+    response = requests.post(url, data=json.dumps(payload), auth=auth)
     print(f'STATUS CODE: {response.status_code}')
-
-    print('RESPONSE:')
-    results = json.loads(response.text)
-    print(json.dumps(results, indent=4))
+    print(f'RESPONSE: {json.dumps(response.json(), indent=4)}')
