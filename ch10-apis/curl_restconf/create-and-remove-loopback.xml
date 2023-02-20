@@ -1,0 +1,18 @@
+<yang-patch xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-patch">
+  <patch-id>add-remove-loopback-patch</patch-id>
+  <edit>
+    <edit-id>edit1</edit-id>
+    <operation>create</operation>
+    <target>/Loopback=1</target>
+    <value>
+        <Loopback xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+          <name>1</name>
+        </Loopback>
+    </value>
+  </edit>
+  <edit>
+    <edit-id>edit2</edit-id>
+    <operation>remove</operation>
+    <target>/Loopback=0</target>
+  </edit>
+</yang-patch>
