@@ -1,0 +1,6 @@
+---
+hostname: sw01
+interfaces:
+- eth0
+- eth1
+- eth2
