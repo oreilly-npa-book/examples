@@ -139,3 +139,9 @@ dmypy.json
 .terraform.lock.hcl
 terraform.tfstate*
 
+# Vagrant
+*.vagrant
+
+# Containerlab
+*.bak
+clab-*
