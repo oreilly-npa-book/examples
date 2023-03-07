@@ -2,78 +2,87 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"log"
 	"net"
 
+	// implementation of gRPC for Go maintained by Google
 	"google.golang.org/grpc"
 
+	// our own package that was built before, and updated to point
+	// to "./networkstuff" via a replacement in the `go.mod` file
 	pb "github.com/pkg/networkstuff"
 )
 
+// custom struct extending the pb.RouterServiceServer plus a
+// local cache of Routers
 type routerServiceServer struct {
 	pb.UnimplementedRouterServiceServer
 	localRouters []*pb.Router
 }
 
-func (s *routerServiceServer) GetRouter(ctx context.Context, router_request *pb.RouterRequest) (*pb.Router, error) {
+// method necessary to match the interface definition for
+// pb.RouterServiceServer, with the same signature
+func (s *routerServiceServer) GetRouter(ctx context.Context,
+	router_request *pb.RouterRequest) (*pb.Router, error) {
+	// Use the local cache of Routers to match by the
+	// router identifier
 	for _, router := range s.localRouters {
 		if router.Id == router_request.Id {
 			return router, nil
 		}
 	}
-	// No router was found, return an unnamed router
+	// No router was found, return a nameless router
 	return &pb.Router{}, nil
 }
 
-var exampleData = []byte(`[
-	{
-		"interfaces": [
-			{
-				"id": 1000,
-				"description": "Gi 0/0/0"
+// server contains the data to expose via grpc
+var server = &routerServiceServer{
+	localRouters: []*pb.Router{
+		&pb.Router{
+			Id:       1,
+			Hostname: "Router A",
+			Interfaces: []*pb.Interface{
+				&pb.Interface{
+					Id:          1000,
+					Description: "Gi 0/0/0",
+				},
+				&pb.Interface{
+					Id:          1001,
+					Description: "Gi 0/0/1",
+				},
 			},
-			{
-				"id": 1001,
-				"description": "Gi 0/0/1"
-			}
-		],
-		"hostname": "Router A",
-		"id": 1
+		},
+		&pb.Router{
+			Id:       2,
+			Hostname: "Router B",
+			Interfaces: []*pb.Interface{
+				&pb.Interface{
+					Id:          2000,
+					Description: "Gi 0/0/0",
+				},
+				&pb.Interface{
+					Id:          2001,
+					Description: "Gi 0/0/1",
+				},
+			},
+		},
 	},
-	{
-		"interfaces": [
-			{
-				"id": 2000,
-				"description": "Gi 0/0/0"
-			},
-			{
-				"id": 2001,
-				"description": "Gi 0/0/1"
-			}
-		],
-		"hostname": "Router B",
-		"id": 2
-	}
-]`)
-
-func newServer() *routerServiceServer {
-	s := &routerServiceServer{}
-	if err := json.Unmarshal(exampleData, &s.localRouters); err != nil {
-		log.Fatalf("Failed to load default routers: %v", err)
-	}
-
-	return s
 }
 
 func main() {
+	// Create a TCP server listener in 50051 port
 	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", 50051))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+	// Bootstrap a gRPC server with defaults
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
-	pb.RegisterRouterServiceServer(grpcServer, newServer())
+
+	// Register the custom RouterServiceServer implementation to
+	// the gRPC server
+	pb.RegisterRouterServiceServer(grpcServer, server)
+	// Attach the gRPC server to the TCP port 50051 opened before
 	grpcServer.Serve(lis)
 }

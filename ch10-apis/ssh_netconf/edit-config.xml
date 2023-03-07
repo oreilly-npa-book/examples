@@ -1,0 +1,27 @@
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <configuration xmlns="http://yang.juniper.net/junos/conf/root">
+        <interfaces xmlns="http://yang.juniper.net/junos/conf/interfaces">
+          <interface>
+            <name>ge-0/0/0</name>
+            <unit>
+              <name>0</name>
+              <description>Interface with changed IP</description>
+              <family>
+                <inet>
+                  <address>
+                    <name>192.0.2.1/24</name>
+                  </address>
+                </inet>
+              </family>
+            </unit>
+          </interface>
+        </interfaces>
+      </configuration>
+    </config>
+  </edit-config>
+</rpc>
