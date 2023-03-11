@@ -1,0 +1,56 @@
+---
+switches:
+  sw01:
+    interfaces:
+      - name: eth0
+        vlans: [1, 100]
+      - name: eth1
+        vlans: [1, 100]
+      - name: eth2
+        vlans: [1, 100]
+      - name: eth3
+        vlans: [1, 100]
+      - name: eth4
+        vlans: [1, 100]
+      - name: eth5
+        vlans: [1, 100]
+      - name: eth6
+        vlans: [1, 100]
+      - name: eth7
+        vlans: [1, 100]
+  sw02:
+    interfaces:
+      - name: eth0
+        vlans: [1, 100]
+      - name: eth1
+        vlans: [1, 100]
+      - name: eth2
+        vlans: [1, 100]
+      - name: eth3
+        vlans: [1, 100]
+      - name: eth4
+        vlans: [1, 100]
+      - name: eth5
+        vlans: [1, 100]
+      - name: eth6
+        vlans: [1, 100]
+      - name: eth7
+        vlans: [1, 100]
+  sw03:
+    interfaces:
+      - name: eth0
+        vlans: [1, 100]
+      - name: eth1
+        vlans: [1, 100]
+      - name: eth2
+        vlans: [1, 100]
+      - name: eth3
+        vlans: [1, 100]
+      - name: eth4
+        vlans: [1, 100]
+      - name: eth5
+        vlans: [1, 100]
+      - name: eth6
+        vlans: [1, 100]
+      - name: eth7
+        vlans: [1, 100]
