@@ -1,0 +1,21 @@
+---
+amers-cpe:
+  groups:
+    - "global"
+emea-cpe:
+  groups:
+    - "global"
+  data:
+    syslog_server: "10.9.1.1"
+amers-dc:
+  groups:
+    - "global"
+emea-dc:
+  groups:
+    - "global"
+global:
+  data:
+    ntp_server: "10.1.200.199"
+    syslog_server: "10.1.200.201"
+  username: "ntc"
+  password: "ntc123"
