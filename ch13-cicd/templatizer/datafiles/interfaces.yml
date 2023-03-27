@@ -1,0 +1,6 @@
+GigabitEthernet0/0:
+  description: Internet
+GigabitEthernet0/1:
+  description: DMZ
+GigabitEthernet0/2
+  description: LAN

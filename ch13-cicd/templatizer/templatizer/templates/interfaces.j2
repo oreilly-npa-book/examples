@@ -1,0 +1,5 @@
+{# This template will generate a list of interfaces and their descriptions. #}
+{% for interface, int_det in config|dictsort -%}
+interface {{ interface }}
+    description {{ int_det["description"] }}
+{% endfor %}

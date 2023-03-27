@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = templatizer
+omit = templatizer/tests/*
+
+[report]
+ignore-errors = True

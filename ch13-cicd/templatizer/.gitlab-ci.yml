@@ -1,0 +1,6 @@
+test:
+  script:
+  - cd tools/ && python validate_yaml.py
+  - tox -epep8
+  - tox -epy27
+  - tox -ecover
