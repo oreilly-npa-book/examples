@@ -1,0 +1,44 @@
+---
+csr1:
+  hostname: "csr1"
+  platform: "ios"
+  groups:
+    - "amers-cpe"
+csr2:
+  hostname: "csr2"
+  platform: "ios"
+  groups:
+    - "amers-cpe"
+vmx1:
+  hostname: "vmx1"
+  platform: "junos"
+  groups:
+    - "emea-cpe"
+vmx2:
+  hostname: "vmx2"
+  platform: "junos"
+  groups:
+    - "emea-cpe"
+eos-spine1:
+  hostname: "eos-spine1"
+  platform: "eos"
+  groups:
+    - "emea-dc"
+eos-spine2:
+  hostname: "eos-spine2"
+  platform: "eos"
+  groups:
+    - "emea-dc"
+nxos-spine1:
+  hostname: "nxos-spine1"
+  platform: "nxos"
+  groups:
+    - "amers-dc"
+  data:
+    ntp_server: "10.1.200.200"
+    syslog_server: "10.1.200.201"
+nxos-spine2:
+  hostname: "nxos-spine2"
+  platform: "nxos"
+  groups:
+    - "amers-dc"
