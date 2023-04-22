@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 	"text/template"
 )
@@ -17,7 +16,7 @@ func main() {
 	// Create the file to contain our output
 	file, err := os.Create("./output.txt")
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	// Anything that satisfies io.Writer can be passed as the first parameter

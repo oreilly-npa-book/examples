@@ -1,0 +1,4 @@
+{% for id, name in config|dictsort -%}
+vlan {{ id }}
+    name {{ name }}
+{% endfor %}
