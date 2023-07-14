@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/aristanetworks/glog v0.0.0-20220413230315-4bbe49d210b0
 	github.com/aristanetworks/goarista v0.0.0-20220920225711-39c593d5fd51
-	github.com/karimra/gnmic v0.24.1
+	github.com/openconfig/gnmic v0.24.1
 	github.com/openconfig/gnmi v0.0.0-20220617175856-41246b1b3507
 	google.golang.org/protobuf v1.28.1
 )

@@ -583,8 +583,8 @@ github.com/jstemmer/go-junit-report v0.9.1/go.mod h1:Brl9GWCQeLvo8nXZwPNNblvFj/X
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
-github.com/karimra/gnmic v0.24.1 h1:Uq55jqEuqAQHQ+7ZKuzHSRacn3PE7pTwPzPOKA4aDGY=
-github.com/karimra/gnmic v0.24.1/go.mod h1:9VzjsmSKnOvAPvPF6UBV6nDHnfCAYRmiDuSwcR46zxM=
+github.com/openconfig/gnmic v0.24.1 h1:Uq55jqEuqAQHQ+7ZKuzHSRacn3PE7pTwPzPOKA4aDGY=
+github.com/openconfig/gnmic v0.24.1/go.mod h1:9VzjsmSKnOvAPvPF6UBV6nDHnfCAYRmiDuSwcR46zxM=
 github.com/kevinburke/ssh_config v0.0.0-20201106050909-4977a11b4351/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF4nAY/ojJ6r6mM=
 github.com/kevinburke/ssh_config v1.1.0 h1:pH/t1WS9NzT8go394IqZeJTMHVm6Cr6ZJ6AQ+mdNo/o=
 github.com/kevinburke/ssh_config v1.1.0/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF4nAY/ojJ6r6mM=
