@@ -22,9 +22,9 @@
         src: "./reports/facts.j2"
         dest: "./reports/facts/{{ inventory_hostname }}.md"
 
-    - name: "CREATE MASTER REPORT"
+    - name: "CREATE MAIN REPORT"
       assemble:
         src: "./reports/facts/"
-        dest: "./reports/master-report.md"
+        dest: "./reports/main-report.md"
         delimiter: "---"
       run_once: true
